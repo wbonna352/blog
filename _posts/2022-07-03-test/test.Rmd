@@ -1,0 +1,58 @@
+---
+title: "Test"
+description: |
+  A short description of the post.
+author:
+  - name: Nora Jones
+    url: https://example.com/norajones
+date: 2022-07-03
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r libraries}
+library(tidyverse)
+library(funModeling)
+```
+
+```{r}
+cars <- mtcars %>% 
+  rownames_to_column("model")
+```
+
+```{r}
+df_status(cars)
+```
+
+```{r}
+cars %>% 
+  ggplot(aes(x = hp,
+             y = mpg)) +
+  geom_smooth(se = FALSE,
+              method = "loess",
+              formula = "y ~ x",
+              color = "black",
+              aes(linetype = "loess")) +
+  geom_point(aes(color = factor(cyl))) +
+  scale_x_continuous(limits = c(0, 400)) +
+  scale_y_continuous(limits = c(0, 40)) +
+  labs(title = "Miles per gallon vs horse power",
+       x = "Horse power",
+       y = "Miles per gallon",
+       color = "cylinders",
+       linetype = element_blank()) +
+  theme_bw() +
+  theme(legend.position = "right",
+        plot.title = element_text(hjust = 0.5))
+```
+

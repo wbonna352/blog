@@ -15,5 +15,22 @@
     "preview": {},
     "last_modified": "2022-07-03T17:33:51+02:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/2022-07-03-test/",
+    "title": "Test",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Nora Jones",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2022-07-03",
+    "categories": [],
+    "contents": "\n\n\nlibrary(tidyverse)\nlibrary(funModeling)\n\n\n\n\n\ncars <- mtcars %>% \n  rownames_to_column(\"model\")\n\n\n\n\n\ndf_status(cars)\n\n\n   variable q_zeros p_zeros q_na p_na q_inf p_inf      type unique\n1     model       0    0.00    0    0     0     0 character     32\n2       mpg       0    0.00    0    0     0     0   numeric     25\n3       cyl       0    0.00    0    0     0     0   numeric      3\n4      disp       0    0.00    0    0     0     0   numeric     27\n5        hp       0    0.00    0    0     0     0   numeric     22\n6      drat       0    0.00    0    0     0     0   numeric     22\n7        wt       0    0.00    0    0     0     0   numeric     29\n8      qsec       0    0.00    0    0     0     0   numeric     30\n9        vs      18   56.25    0    0     0     0   numeric      2\n10       am      19   59.38    0    0     0     0   numeric      2\n11     gear       0    0.00    0    0     0     0   numeric      3\n12     carb       0    0.00    0    0     0     0   numeric      6\n\n\n\ncars %>% \n  ggplot(aes(x = hp,\n             y = mpg)) +\n  geom_smooth(se = FALSE,\n              method = \"loess\",\n              formula = \"y ~ x\",\n              color = \"black\",\n              aes(linetype = \"loess\")) +\n  geom_point(aes(color = factor(cyl))) +\n  scale_x_continuous(limits = c(0, 400)) +\n  scale_y_continuous(limits = c(0, 40)) +\n  labs(title = \"Miles per gallon vs horse power\",\n       x = \"Horse power\",\n       y = \"Miles per gallon\",\n       color = \"cylinders\",\n       linetype = element_blank()) +\n  theme_bw() +\n  theme(legend.position = \"right\",\n        plot.title = element_text(hjust = 0.5))\n\n\n\n\n\n\n\n",
+    "preview": "posts/2022-07-03-test/test_files/figure-html5/unnamed-chunk-3-1.png",
+    "last_modified": "2022-07-03T18:49:48+02:00",
+    "input_file": "test.knit.md"
   }
 ]
